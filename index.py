@@ -4,7 +4,7 @@ import io
 import openai
 import pytesseract
 
-openai.api_key = "sk-p4JmogA0P4bFnbi_kpw7VEPeSgsa5-gUopKn1PGQHjT3BlbkFJMRg68nuzZ3cF90Wu3qxMRCBYExj2BqxkEohk3NrrYA"
+openai.api_key = "YOUR_API_KEY"
 
 def extract_text_from_image(image):
     text = pytesseract.image_to_string(image, lang='eng')
@@ -20,7 +20,7 @@ def generate_test_scenarios(extracted_text):
     - Resultados esperados
     """
     response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # ou "gpt-4", se tiver acesso
+        model="gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": "Você é um especialista em geração de cenários de teste."},
             {"role": "user", "content": prompt}
@@ -62,18 +62,16 @@ if st.button("Gera automação"):
             Com um código de exemplo de erro e sucesso.
             """
 
-        # Chamada para gerar a recomendação de estilo
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",  # ou "gpt-4" se tiver acesso
+            model="gpt-3.5-turbo",
             messages=[
                 {"role": "system", "content": "Você é um especialista em geração de automação de teste."},
                 {"role": "user", "content": prompt}
             ],
         )
 
-        # Extrai a resposta da IA
         recomendacao = response['choices'][0]['message']['content'].strip()
         st.write("### Recomendação de Automação:")
         st.write(recomendacao)
 
-st.write("Feito por Vitorino & Filho Tecnologia - 2024")
+st.write("Feito por JFilhoGN - 2024")
